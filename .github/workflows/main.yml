@@ -2,7 +2,7 @@ name: Add Rules to Cloudflare Gateway
 on:
   push:
   schedule:
-    - cron: "0 * * * *"
+    - cron: "30 7 * * *"
   workflow_dispatch:
 jobs:
   run:
@@ -39,6 +39,9 @@ jobs:
           key: ${{ runner.os }}-cloudflare-cache-${{ github.run_id }}
           restore-keys: |
             ${{ runner.os }}-cloudflare-cache-
+
+      - name: Cloudflare Gateway Zero Trust 
+        run: python -m src leave
       
       - name: Cloudflare Gateway Zero Trust 
         run: python -m src run
